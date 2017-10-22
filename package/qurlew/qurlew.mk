@@ -32,8 +32,10 @@ define QURLEW_BUILD_CMDS
 endef
 
 define QURLEW_INSTALL_TARGET_CMDS
-	$(INSTALL) -m 755 -D $(@D)/src/qurlew \
+	$(INSTALL) -m 755 -D $(@D)/src/qurlew $(QURLEW_PKGDIR)/qurlew-shell \
 		$(TARGET_DIR)/usr/bin/
+	grep -qsE '^/usr/bin/qurlew-shell' $(TARGET_DIR)/etc/shells \
+		|| echo "/usr/bin/qurlew-shell" >> $(TARGET_DIR)/etc/shells
 endef
 
 $(eval $(generic-package))
