@@ -15,6 +15,14 @@ define QURLEW_INSTALL_INIT_SYSV
 		$(TARGET_DIR)/etc/init.d/S99qurlew
 endef
 
+define QURLEW_INSTALL_INIT_SYSTEMD
+	$(INSTALL) -D -m 644 $(QURLEW_PKGDIR)/qurlew.service \
+		$(TARGET_DIR)/usr/lib/systemd/system/qurlew.service
+	mkdir -p $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants
+	ln -sf ../../../../usr/lib/systemd/system/qurlew.service \
+		$(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/qurlew.service
+endef
+
 define QURLEW_CONFIGURE_CMDS
 	(cd $(@D); $(TARGET_MAKE_ENV) $(QURLEW_ENV) $(HOST_DIR)/usr/bin/qmake)
 endef
