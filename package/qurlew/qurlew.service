@@ -2,7 +2,9 @@
 Description=Qurlew
 
 [Service]
-ExecStart=/bin/sh -c "nc -klU /var/run/qurlew.socket | /usr/bin/qurlew --url http://www.github.com/qurlew"
+User=qurlew
+Group=qurlew
+ExecStart=/bin/sh -c "nc -klU /var/run/qurlew/socket | /usr/bin/qurlew --url http://www.github.com/qurlew"
 
 [Install]
 WantedBy=multi-user.target

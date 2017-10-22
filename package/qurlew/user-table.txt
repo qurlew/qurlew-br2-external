@@ -1,0 +1,1 @@
+qurlew -1 qurlew -1 =qurlew /home/qurlew /usr/bin/qurlew-shell video,input Qurlew user

@@ -13,16 +13,19 @@ set -e
 
 DAEMON="/bin/sh"
 NAME="Unix socket server"
+DAEMONUSER="qurlew"
 PIDFILE="/tmp/qurlew.pid"
 DESC="Qurlew"
-ARGS="/usr/bin/nc -klU /var/run/qurlew.socket | /usr/bin/qurlew"
+ARGS="/usr/bin/nc -klU /var/run/qurlew/socket | /usr/bin/qurlew"
 
 case "$1" in
 start)
 	shift
 	echo -n "starting $DESC: $NAME... "
+	mkdir -p /var/run/qurlew/
+	chown -R qurlew: /var/run/qurlew/
 	if ! start-stop-daemon --start --pidfile "$PIDFILE" --make-pidfile \
-		--background --exec "$DAEMON" -- -c "$ARGS" ; then
+		--background --chuid "$DAEMONUSER" --exec "$DAEMON" -- -c "$ARGS" ; then
 		echo "failed."
 		exit 1
 	fi
