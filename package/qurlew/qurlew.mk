@@ -10,6 +10,11 @@ QURLEW_LICENSE = GPL-3.0+
 QURLEW_LICENSE_FILES = LICENCE
 QURLEW_DEPENDENCIES = qt5webengine
 
+define QURLEW_INSTALL_INIT_SYSV
+	$(INSTALL) -m 0755 -D $(QURLEW_PKGDIR)/S99qurlew \
+		$(TARGET_DIR)/etc/init.d/S99qurlew
+endef
+
 define QURLEW_CONFIGURE_CMDS
 	(cd $(@D); $(TARGET_MAKE_ENV) $(QURLEW_ENV) $(HOST_DIR)/usr/bin/qmake)
 endef
