@@ -1,0 +1,11 @@
+#
+# Copyright (C) 2018  Savoir-faire Linux Inc.
+#	Gaël Portay <gael.portay@savoirfairelinux.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+
+ACTION=="add|change", SUBSYSTEM=="vchiq", GROUP="video", MODE="0660"
